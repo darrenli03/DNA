@@ -119,7 +119,7 @@ public class LinkStrand implements IDnaStrand {
             myCurrent = myFirst;
             int charsPassed = 0;
             while (charsPassed < index) {
-                // System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
+                 System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
                 if (charsPassed + myCurrent.info.length() > index) {
                     break;
                 } else {
@@ -129,11 +129,13 @@ public class LinkStrand implements IDnaStrand {
             }
             myLocalIndex = index - charsPassed;
             myIndex = index;
+            System.out.println(myCurrent.info.charAt(myLocalIndex));
             return myCurrent.info.charAt(myLocalIndex);
         } else if (index == myIndex + 1) {
-//            System.out.println("index is: " + index);
-//            System.out.println("myLocalIndex is: " + myLocalIndex);
-//            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
+            System.out.println("index == myIndex+1");
+            System.out.println("index is: " + index);
+            System.out.println("myLocalIndex is: " + myLocalIndex);
+            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
 
             if (myLocalIndex + 1 >= myCurrent.info.length()) {
                 myCurrent = myCurrent.next;
@@ -143,11 +145,12 @@ public class LinkStrand implements IDnaStrand {
             }
 
             myIndex = index;
+            System.out.println(myCurrent.info.charAt(myLocalIndex));
             return myCurrent.info.charAt(myLocalIndex);
         } else {
-//            System.out.println("index is: " + index);
-//            System.out.println("myLocalIndex is: " + myLocalIndex);
-//            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
+            System.out.println("index is: " + index);
+            System.out.println("myLocalIndex is: " + myLocalIndex);
+            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
 
             myCurrent = myFirst;
             int charsPassed = 0;
@@ -162,6 +165,7 @@ public class LinkStrand implements IDnaStrand {
             }
             myLocalIndex = index - charsPassed;
             myIndex = index;
+            System.out.println(myCurrent.info.charAt(myLocalIndex));
             return myCurrent.info.charAt(myLocalIndex);
         }
 
