@@ -67,6 +67,7 @@ public class LinkStrand implements IDnaStrand {
         myLast = myCurrent;
         mySize += dna.length();
         myAppends++;
+
         return this;
     }
 
@@ -82,6 +83,7 @@ public class LinkStrand implements IDnaStrand {
         reversed.myLast = myFirst;
         reversed.myAppends = 0;
         reversed.myIndex = 0;
+        reversed.myLocalIndex = 0;
 
         if (myFirst.next != null) {
             Node stackPopulate = myFirst;
@@ -141,7 +143,6 @@ public class LinkStrand implements IDnaStrand {
             }
 
             myIndex = index;
-
             return myCurrent.info.charAt(myLocalIndex);
         } else {
 //            System.out.println("index is: " + index);
@@ -153,7 +154,6 @@ public class LinkStrand implements IDnaStrand {
             while (charsPassed < index) {
                 // System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
                 if (charsPassed + myCurrent.info.length() > index) {
-                    myLocalIndex=0;
                     break;
                 } else {
                     charsPassed += myCurrent.info.length();
