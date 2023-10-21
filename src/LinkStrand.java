@@ -110,25 +110,62 @@ public class LinkStrand implements IDnaStrand {
 
     @Override
     public char charAt(int index) throws IndexOutOfBoundsException {
-        if(index>=mySize || index<0) throw new IndexOutOfBoundsException("index " + index + " is greater than or equal to total length of LinkStrand " + mySize);
-        if(myIndex==0){
+        if (index >= mySize || index < 0)
+            throw new IndexOutOfBoundsException("index " + index + " is greater than or equal to total length of LinkStrand " + mySize);
+
+        if (myIndex == 0) {
+            myCurrent = myFirst;
+            int charsPassed = 0;
+            while (charsPassed < index) {
+                // System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
+                if (charsPassed + myCurrent.info.length() > index) {
+                    break;
+                } else {
+                    charsPassed += myCurrent.info.length();
+                    myCurrent = myCurrent.next;
+                }
+            }
+            myLocalIndex = index - charsPassed;
+            myIndex = index;
+            return myCurrent.info.charAt(myLocalIndex);
+        } else if (index == myIndex + 1) {
+//            System.out.println("index is: " + index);
+//            System.out.println("myLocalIndex is: " + myLocalIndex);
+//            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
+
+            if (myLocalIndex + 1 >= myCurrent.info.length()) {
+                myCurrent = myCurrent.next;
+                myLocalIndex = 0;
+            } else {
+                myLocalIndex++;
+            }
+
             myIndex = index;
 
+            return myCurrent.info.charAt(myLocalIndex);
+        } else {
+            System.out.println("index is: " + index);
+            System.out.println("myLocalIndex is: " + myLocalIndex);
+            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
+
+            myCurrent = myFirst;
+            int charsPassed = 0;
+            while (charsPassed < index) {
+                // System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
+                if (charsPassed + myCurrent.info.length() > index) {
+                    myLocalIndex=0;
+                    break;
+                } else {
+                    charsPassed += myCurrent.info.length();
+                    myCurrent = myCurrent.next;
+                }
+            }
+            myLocalIndex = index - charsPassed;
+            myIndex = index;
+            return myCurrent.info.charAt(myLocalIndex);
         }
-        
-        int charactersPassed = 0;
-        myCurrent = myFirst;
-        while(charactersPassed<index){
-            // System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
-            if(charactersPassed+myCurrent.info.length() > index){
-                break;
-            } else {
-                charactersPassed+=myCurrent.info.length();
-                myCurrent=myCurrent.next;
-            } 
-        }
-        myLocalIndex = index-charactersPassed;
-        return myCurrent.info.charAt(myLocalIndex);
+
+
     }
 
 
