@@ -144,9 +144,9 @@ public class LinkStrand implements IDnaStrand {
 
             return myCurrent.info.charAt(myLocalIndex);
         } else {
-            System.out.println("index is: " + index);
-            System.out.println("myLocalIndex is: " + myLocalIndex);
-            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
+//            System.out.println("index is: " + index);
+//            System.out.println("myLocalIndex is: " + myLocalIndex);
+//            System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
 
             myCurrent = myFirst;
             int charsPassed = 0;
