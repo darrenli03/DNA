@@ -122,8 +122,10 @@ public class LinkStrand implements IDnaStrand {
 //            }
 //        myCurrent = myFirst;
 
-            myCurrent = myFirst;
-            return '\0';
+//            myCurrent = myFirst;
+//            return '\0';
+
+            throw new IndexOutOfBoundsException("myCurrent is null");
 //            }
         }
 
