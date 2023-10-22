@@ -18,25 +18,25 @@ public class LinkStrand implements IDnaStrand {
         initialize(s);
     }
 
-//    public static void main(String[] args) {
-//        LinkStrand bruh = new LinkStrand("bruh1");
-//        bruh.append("moment1");
-//        bruh.append("bruh2");
-//
-//        int x = (int) bruh.size() - 1;
-//        while(x>= 0){
-//            System.out.println(bruh.charAt(x));
-//            x--;
-//        }
-//        bruh.myCurrent = bruh.myFirst;
-//        System.out.println(bruh.myCurrent.info);
-//        System.out.println(bruh.myCurrent.next.info);
-//        System.out.println(bruh.charAt(14));
-//        System.out.println(bruh.charAt(14));
-//
-//
-//
-//    }
+    public static void main(String[] args) {
+        LinkStrand bruh = new LinkStrand("bruh1");
+        bruh.append("moment1");
+        bruh.append("bruh2");
+
+        int x = (int) bruh.size() - 1;
+        while(x>= 0){
+            System.out.println(bruh.charAt(x));
+            x--;
+        }
+        bruh.myCurrent = bruh.myFirst;
+        System.out.println(bruh.myCurrent.info);
+        System.out.println(bruh.myCurrent.next.info);
+        System.out.println(bruh.charAt(14));
+        System.out.println(bruh.charAt(14));
+
+
+
+    }
 
     private class Node {
         private String info;
@@ -151,15 +151,15 @@ public class LinkStrand implements IDnaStrand {
 //        return myCurrent.info.charAt(myLocalIndex);
 
         //more efficient version than previous
-        System.out.println("myCurrent.info is: " + myCurrent.info);
+//        System.out.println("myCurrent.info is: " + myCurrent.info);
         if(index >= mySize || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
 
         if(index == myIndex) {
-            return myCurrent.info.charAt(myLocalIndex);
+            return myCurrent.info.charAt(0);
 
         } else if(index > myIndex){//case for when index is past where myIndex is currently
             //checks if adding the characters from this node to myIndex would exceed the target index. If not, we are not at the correct node and need to go check the next one
-            System.out.println(myCurrent.info.length());
+//            System.out.println(myCurrent.info.length());
             while(myIndex + myCurrent.info.length() <= index){
                 myIndex += myCurrent.info.length();
                 myCurrent = myCurrent.next;
