@@ -31,12 +31,12 @@ public class LinkStrand implements IDnaStrand {
 //        bruh.myCurrent = bruh.myFirst;
 //        System.out.println(bruh.myCurrent.info);
 //        System.out.println(bruh.myCurrent.next.info);
-        System.out.println(bruh.charAt(14));
-        System.out.println(bruh.charAt(14));
-
-
-
-    }
+//        System.out.println(bruh.charAt(14));
+//        System.out.println(bruh.charAt(14));
+//
+//
+//
+//    }
 
     private class Node {
         private String info;
