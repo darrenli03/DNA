@@ -131,26 +131,27 @@ public class LinkStrand implements IDnaStrand {
     @Override
     public char charAt(int index) throws IndexOutOfBoundsException {
 
-        if(!(index < mySize) || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
+        //simplest version
+//        if(!(index < mySize) || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
+//
+//        if(index < myIndex){
+//            myIndex = 0;
+//            myCurrent = myFirst;
+//        } else {
+//            myIndex -= myLocalIndex;
+//        }
+//
+//        while(index >= myIndex + myCurrent.info.length()){
+//            myIndex += myCurrent.info.length();
+//            myCurrent = myCurrent.next;
+//        }
+//
+//        myLocalIndex = index - myIndex;
+//        myIndex = index;
+//        return myCurrent.info.charAt(myLocalIndex);
 
-        if(index < myIndex){
-            myIndex = 0;
-            myCurrent = myFirst;
-        } else {
-            myIndex -= myLocalIndex;
-        }
-
-        while(index >= myIndex + myCurrent.info.length()){
-            myIndex += myCurrent.info.length();
-            myCurrent = myCurrent.next;
-        }
-
-        myLocalIndex = index - myIndex;
-        myIndex = index;
-        return myCurrent.info.charAt(myLocalIndex);
-
-        //figure out why this code throws an error
-/*        System.out.println("myCurrent.info is: " + myCurrent.info);
+        //more efficient version than previous
+        System.out.println("myCurrent.info is: " + myCurrent.info);
         if(index >= mySize || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
 
         if(index == myIndex) {
@@ -159,7 +160,7 @@ public class LinkStrand implements IDnaStrand {
         } else if(index > myIndex){//case for when index is past where myIndex is currently
             //checks if adding the characters from this node to myIndex would exceed the target index. If not, we are not at the correct node and need to go check the next one
             System.out.println(myCurrent.info.length());
-            while(myIndex + myCurrent.info.length() < index){
+            while(myIndex + myCurrent.info.length() <= index){
                 myIndex += myCurrent.info.length();
                 myCurrent = myCurrent.next;
             }
@@ -170,7 +171,7 @@ public class LinkStrand implements IDnaStrand {
             myIndex = 0;
             myCurrent = myFirst;
 
-            while(myIndex + myCurrent.info.length() < index){
+            while(myIndex + myCurrent.info.length() <= index){
                 myIndex += myCurrent.info.length();
                 myCurrent = myCurrent.next;
             }
@@ -178,8 +179,9 @@ public class LinkStrand implements IDnaStrand {
             myLocalIndex = index - myIndex;
             return myCurrent.info.charAt(myLocalIndex);
         }
-        */
 
+
+        //prototype
         /*        if (index >= mySize || index < 0)
             throw new IndexOutOfBoundsException("index " + index + " is greater than or equal to total length of LinkStrand " + mySize);
 
