@@ -261,11 +261,11 @@ public class LinkStrand implements IDnaStrand {
 
     @Override
     public String toString() {
-        myCurrent = myFirst;
+        Node pointer = myFirst;
         StringBuilder sb = new StringBuilder();
-        while (myCurrent != null) {
-            sb.append(myCurrent.info);
-            myCurrent = myCurrent.next;
+        while (pointer != null) {
+            sb.append(pointer.info);
+            pointer = pointer.next;
         }
         return sb.toString();
     }
