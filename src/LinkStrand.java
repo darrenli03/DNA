@@ -18,16 +18,16 @@ public class LinkStrand implements IDnaStrand {
         initialize(s);
     }
 
-    public static void main(String[] args) {
-        LinkStrand bruh = new LinkStrand("bruh1");
-        bruh.append("moment1");
-        bruh.append("bruh2");
-
-        int x = (int) bruh.size() - 1;
-        while(x>= 0){
-            System.out.println(bruh.charAt(x));
-            x--;
-        }
+//    public static void main(String[] args) {
+//        LinkStrand bruh = new LinkStrand("bruh1");
+//        bruh.append("moment1");
+//        bruh.append("bruh2");
+//
+//        int x = (int) bruh.size() - 1;
+//        while(x>= 0){
+//            System.out.println(bruh.charAt(x));
+//            x--;
+//        }
 //        bruh.myCurrent = bruh.myFirst;
 //        System.out.println(bruh.myCurrent.info);
 //        System.out.println(bruh.myCurrent.next.info);
