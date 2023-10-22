@@ -115,13 +115,18 @@ public class LinkStrand implements IDnaStrand {
     public char charAt(int index) throws IndexOutOfBoundsException {
         if (index >= mySize || index < 0)
             throw new IndexOutOfBoundsException("index " + index + " is greater than or equal to total length of LinkStrand " + mySize);
-        if(myCurrent == null)
+
+        if (myCurrent == null){
 //            if(myFirst == null){
 //                return '\0';
 //            }
 //        myCurrent = myFirst;
 
+            myCurrent = myFirst;
             return '\0';
+//            }
+        }
+
 
 //        System.out.println(this);
         if (myIndex == 0) {
@@ -184,6 +189,7 @@ public class LinkStrand implements IDnaStrand {
 
 
     }
+
     @Override
     public String toString() {
         myCurrent = myFirst;
