@@ -176,8 +176,7 @@ public class LinkStrand implements IDnaStrand {
 
 
     }
-
-
+    @Override
     public String toString() {
         Node pointer = myFirst;
         StringBuilder sb = new StringBuilder();
