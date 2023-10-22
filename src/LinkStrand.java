@@ -117,8 +117,11 @@ public class LinkStrand implements IDnaStrand {
         if(index >= mySize || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
         StringBuilder sb = new StringBuilder();
 
+        //case when index is one greater than index of previous run
         if(sb.length() > index && index == myIndex + 1){
             if(myLocalIndex + 1 < myCurrent.info.length()){
+                myIndex++;
+                myLocalIndex++;
                 return sb.charAt(index);
             } else {
                 myLocalIndex = 0;
