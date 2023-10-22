@@ -114,17 +114,35 @@ public class LinkStrand implements IDnaStrand {
     @Override
     public char charAt(int index) throws IndexOutOfBoundsException {
 
-        if(index > mySize || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
+        if(index >= mySize || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
         StringBuilder sb = new StringBuilder();
+
+        if(sb.length() > index && index == myIndex + 1){
+            if(myLocalIndex + 1 < myCurrent.info.length()){
+                return sb.charAt(index);
+            } else {
+                myLocalIndex = 0;
+                myIndex++;
+                sb.append(myCurrent.next);
+                return sb.charAt(index);
+            }
+        }
 
         if(sb.length() > index){
             return sb.charAt(index);
         }
+
         myCurrent = myFirst;
+        int sbLength = 0;
+
         while(sb.length() <= index){
+            sbLength = sb.length();
             sb.append(myCurrent.info);
             myCurrent = myCurrent.next;
+
         }
+        myIndex = index;
+        myLocalIndex = index - sbLength;
         return sb.charAt(index);
 
         //figure out why this code throws an error
@@ -157,6 +175,7 @@ public class LinkStrand implements IDnaStrand {
             return myCurrent.info.charAt(myLocalIndex);
         }
         */
+
         /*        if (index >= mySize || index < 0)
             throw new IndexOutOfBoundsException("index " + index + " is greater than or equal to total length of LinkStrand " + mySize);
 
