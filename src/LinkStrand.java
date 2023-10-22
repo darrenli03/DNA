@@ -122,12 +122,12 @@ public class LinkStrand implements IDnaStrand {
             if(myLocalIndex + 1 < myCurrent.info.length()){
                 myIndex++;
                 myLocalIndex++;
-                return sb.charAt(index);
+                return myCurrent.info.charAt(myLocalIndex);
             } else {
                 myLocalIndex = 0;
                 myIndex++;
-                sb.append(myCurrent.next);
-                return sb.charAt(index);
+                myCurrent =myCurrent.next;
+                return myCurrent.info.charAt(myLocalIndex);
             }
         }
 
