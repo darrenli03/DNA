@@ -115,11 +115,14 @@ public class LinkStrand implements IDnaStrand {
         if (index >= mySize || index < 0)
             throw new IndexOutOfBoundsException("index " + index + " is greater than or equal to total length of LinkStrand " + mySize);
 
+        System.out.println(this);
         if (myIndex == 0) {
             myCurrent = myFirst;
             int charsPassed = 0;
             while (charsPassed < index) {
-                 System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
+                System.out.println("index is: " + index);
+                System.out.println("myCurrent.info is: " + myCurrent.info + " myCurrent.info.length() is: " + myCurrent.info.length());
+                System.out.println();
                 if (charsPassed + myCurrent.info.length() > index) {
                     break;
                 } else {
@@ -136,6 +139,7 @@ public class LinkStrand implements IDnaStrand {
             System.out.println("index is: " + index);
             System.out.println("myLocalIndex is: " + myLocalIndex);
             System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
+            System.out.println();
 
             if (myLocalIndex + 1 >= myCurrent.info.length()) {
                 myCurrent = myCurrent.next;
@@ -151,6 +155,7 @@ public class LinkStrand implements IDnaStrand {
             System.out.println("index is: " + index);
             System.out.println("myLocalIndex is: " + myLocalIndex);
             System.out.println("myCurrent.info.length() is: " + myCurrent.info.length());
+            System.out.println();
 
             myCurrent = myFirst;
             int charsPassed = 0;
