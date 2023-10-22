@@ -178,11 +178,11 @@ public class LinkStrand implements IDnaStrand {
     }
     @Override
     public String toString() {
-        Node pointer = myFirst;
+        myCurrent = myFirst;
         StringBuilder sb = new StringBuilder();
-        while (pointer != null) {
-            sb.append(pointer.info);
-            pointer = pointer.next;
+        while (myCurrent != null) {
+            sb.append(myCurrent.info);
+            myCurrent = myCurrent.next;
         }
         return sb.toString();
     }
