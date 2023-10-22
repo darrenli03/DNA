@@ -18,6 +18,26 @@ public class LinkStrand implements IDnaStrand {
         initialize(s);
     }
 
+    public static void main(String[] args) {
+        LinkStrand bruh = new LinkStrand("bruh1");
+        bruh.append("moment1");
+        bruh.append("bruh2");
+
+        int x = (int) bruh.size() - 1;
+        while(x>= 0){
+            System.out.println(bruh.charAt(x));
+            x--;
+        }
+//        bruh.myCurrent = bruh.myFirst;
+//        System.out.println(bruh.myCurrent.info);
+//        System.out.println(bruh.myCurrent.next.info);
+        System.out.println(bruh.charAt(14));
+        System.out.println(bruh.charAt(14));
+
+
+
+    }
+
     private class Node {
         private String info;
         private Node next;
@@ -43,12 +63,11 @@ public class LinkStrand implements IDnaStrand {
 
     @Override
     public void initialize(String source) {
-
+        myFirst = new Node(source, null);
         myAppends = 0;
         mySize = source.length();
         myIndex = 0;
         myLocalIndex = 0;
-        myFirst = new Node(source, null);
         myLast = myFirst;
         myCurrent = myFirst;
 
@@ -62,13 +81,11 @@ public class LinkStrand implements IDnaStrand {
     @Override
     public IDnaStrand append(String dna) {
 
-        myCurrent = myLast;
-        myCurrent.next = new Node(dna);
-        myCurrent = myCurrent.next;
-        myLast = myCurrent;
+        myLast.next = new Node(dna);
+        myLast = myLast.next;
         mySize += dna.length();
         myAppends++;
-
+//        System.out.println(appendCount + ", appended " + myLast.info);
         return this;
     }
 
@@ -114,39 +131,23 @@ public class LinkStrand implements IDnaStrand {
     @Override
     public char charAt(int index) throws IndexOutOfBoundsException {
 
-        if(index >= mySize || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
-        StringBuilder sb = new StringBuilder();
+        if(!(index < mySize) || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
 
-        //case when index is one greater than index of previous run
-        if(sb.length() > index && index == myIndex + 1){
-            if(myLocalIndex + 1 < myCurrent.info.length()){
-                myIndex++;
-                myLocalIndex++;
-                return myCurrent.info.charAt(myLocalIndex);
-            } else {
-                myLocalIndex = 0;
-                myIndex++;
-                myCurrent =myCurrent.next;
-                return myCurrent.info.charAt(myLocalIndex);
-            }
+        if(index < myIndex){
+            myIndex = 0;
+            myCurrent = myFirst;
+        } else {
+            myIndex -= myLocalIndex;
         }
 
-        if(sb.length() > index){
-            return sb.charAt(index);
-        }
-
-        myCurrent = myFirst;
-        int sbLength = 0;
-
-        while(sb.length() <= index){
-            sbLength = sb.length();
-            sb.append(myCurrent.info);
+        while(index >= myIndex + myCurrent.info.length()){
+            myIndex += myCurrent.info.length();
             myCurrent = myCurrent.next;
-
         }
+
+        myLocalIndex = index - myIndex;
         myIndex = index;
-        myLocalIndex = index - sbLength;
-        return sb.charAt(index);
+        return myCurrent.info.charAt(myLocalIndex);
 
         //figure out why this code throws an error
 /*        System.out.println("myCurrent.info is: " + myCurrent.info);

@@ -65,7 +65,7 @@ public class TestStrand {
 		for(int k=0; k < 30; k++) {
 			int index = rand.nextInt((int)ourStrand.size());
 			char ch = ourStrand.charAt(index);
-			assertTrue(ch == arr[index % 4],k+"-th index is "+index);
+			assertTrue(ch == arr[index % 4],k+"-th index is "+index+", expected value is " + arr[index % 4] + " but got " + ch);
 		}
 	}
 
