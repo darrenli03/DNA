@@ -22,16 +22,16 @@ public interface IDnaStrand extends Iterable<Character>{
 		boolean first = true;
 		IDnaStrand ret = null;
 
-		while ((pos = search.indexOf(enzyme, start)) >= 0) {
+		while ((pos = search.indexOf(enzyme, start)) >= 0) {//iterates b times, assume time complexity of indexOf is O(n)
 			if (first) {
-				ret = getInstance(search.substring(start, pos));
+				ret = getInstance(search.substring(start, pos)); //.substring takes O(n/b), occurs once per iterations
 				first = false;
 			} else {
-				ret.append(search.substring(start, pos));
+				ret.append(search.substring(start, pos)); //O(b^2*s) total for all iterations of while loop in StringStrand, O(sb) after all iterations for StringBuilderStrand
 
 			}
 			start = pos + enzyme.length();
-			ret.append(splicee);
+			ret.append(splicee);//O(b^2*s) total for all iterations of while loop
 		}
 		if (start < search.length()) {
 			// NOTE: This is an important special case! If the enzyme
