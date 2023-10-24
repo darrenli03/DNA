@@ -99,9 +99,9 @@ public class LinkStrand implements IDnaStrand {
         reversed.mySize = mySize;
         reversed.myCurrent = reversed.myFirst;
         reversed.myLast = myFirst;
-        reversed.myAppends = 0;
-        reversed.myIndex = 0;
-        reversed.myLocalIndex = 0;
+//        reversed.myAppends = 0;
+//        reversed.myIndex = 0;
+//        reversed.myLocalIndex = 0;
 
         if (myFirst.next != null) {
             Node stackPopulate = myFirst;
@@ -132,53 +132,55 @@ public class LinkStrand implements IDnaStrand {
     public char charAt(int index) throws IndexOutOfBoundsException {
 
         //simplest version
-//        if(!(index < mySize) || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
-//
-//        if(index < myIndex){
-//            myIndex = 0;
-//            myCurrent = myFirst;
-//        } else {
-//            myIndex -= myLocalIndex;
-//        }
-//
-//        while(index >= myIndex + myCurrent.info.length()){
-//            myIndex += myCurrent.info.length();
-//            myCurrent = myCurrent.next;
-//        }
-//
-//        myLocalIndex = index - myIndex;
-//        myIndex = index;
-//        return myCurrent.info.charAt(myLocalIndex);
+        if(!(index < mySize) || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
 
-        //more efficient version than previous
-//        System.out.println("myCurrent.info is: " + myCurrent.info);
-        if(index >= mySize || index < 0) throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
-
-        if(index == myIndex) {
-            return myCurrent.info.charAt(0);
-
-        } else if(index > myIndex){//case for when index is past where myIndex is currently
-            //checks if adding the characters from this node to myIndex would exceed the target index. If not, we are not at the correct node and need to go check the next one
-//            System.out.println(myCurrent.info.length());
-            while(myIndex + myCurrent.info.length() <= index){
-                myIndex += myCurrent.info.length();
-                myCurrent = myCurrent.next;
-            }
-            //once we've iterated myCurrent to be on the correct node
-            myLocalIndex = index - myIndex;
-            return myCurrent.info.charAt(myLocalIndex);
-        } else { // case occurs when index < myIndex
+        if(index < myIndex){
             myIndex = 0;
             myCurrent = myFirst;
-
-            while(myIndex + myCurrent.info.length() <= index){
-                myIndex += myCurrent.info.length();
-                myCurrent = myCurrent.next;
-            }
-            //once we've iterated myCurrent to be on the correct node
-            myLocalIndex = index - myIndex;
-            return myCurrent.info.charAt(myLocalIndex);
+        } else {
+            myIndex -= myLocalIndex;
         }
+
+        while(index >= myIndex + myCurrent.info.length()){
+            myIndex += myCurrent.info.length();
+            myCurrent = myCurrent.next;
+        }
+
+        myLocalIndex = index - myIndex;
+        myIndex = index;
+        return myCurrent.info.charAt(myLocalIndex);
+
+        //more efficient version than previous
+
+//        System.out.println("myCurrent.info is: " + myCurrent.info);
+//        if (index >= mySize || index < 0)
+//            throw new IndexOutOfBoundsException("index " + index + " is not valid for LinkStrand size " + mySize);
+//
+//        if (index == myIndex) {
+//            return myCurrent.info.charAt(0);
+//
+//        } else if (index > myIndex) {//case for when index is past where myIndex is currently
+//            //checks if adding the characters from this node to myIndex would exceed the target index. If not, we are not at the correct node and need to go check the next one
+////            System.out.println(myCurrent.info.length());
+//            while (myIndex + myCurrent.info.length() <= index) {
+//                myIndex += myCurrent.info.length();
+//                myCurrent = myCurrent.next;
+//            }
+//            //once we've iterated myCurrent to be on the correct node
+//            myLocalIndex = index - myIndex;
+//            return myCurrent.info.charAt(myLocalIndex);
+//        } else { // case occurs when index < myIndex
+//            myIndex = 0;
+//            myCurrent = myFirst;
+//
+//            while (myIndex + myCurrent.info.length() <= index) {
+//                myIndex += myCurrent.info.length();
+//                myCurrent = myCurrent.next;
+//            }
+//            //once we've iterated myCurrent to be on the correct node
+//            myLocalIndex = index - myIndex;
+//            return myCurrent.info.charAt(myLocalIndex);
+//        }
 
 
         //prototype
