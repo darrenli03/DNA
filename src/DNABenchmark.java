@@ -41,15 +41,15 @@ public class DNABenchmark {
 		sourceBenchmark();
 		System.out.println("--------------- Memory Exhaustion Benchmark ---------------");
 
-		/**
-		 *  Set the large data file to benchmark here
-		fileName = "data/ecoli.txt";
-		file = new File(fileName);
-		mySource = dnaFromScanner(new Scanner(file));
+//		/**
+//		 *  Set the large data file to benchmark here
+//		fileName = "data/ecoli.txt";
+//		file = new File(fileName);
+//		mySource = dnaFromScanner(new Scanner(file));
+//
+//		System.out.printf("Class\t%23s\t%12s\ttime\t%s\n", "splicee", "recomb","appends");
+//		exhaustMemoryBenchmark();
 
-		System.out.printf("Class\t%23s\t%12s\ttime\t%s\n", "splicee", "recomb","appends");
-		exhaustMemoryBenchmark();
-		**/
 	}
 
 	/**
